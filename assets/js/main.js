@@ -1,41 +1,33 @@
-
 /* javascript */
 
-const serviceUrl = 'https://developers.lingvolive.com';
+$("#translateBtn").click(function () {
+  let textToTranslate = $("#textToTranslate").val();
+  console.log(textToTranslate);
 
-const apiKey = 'MDcyZDlmYTktYjBkOS00ODlmLWI1NGQtZWIwMmM2Y2ZmOTAxOjE5MGIyMTg1NTMwMzRiZmI5Njg5NTQ3MzBiMTZmMmFj';
+  const cyrillicPattern = /^[\u0400-\u04FF]+$/;
 
-// var authToken;
+  console.log("Привет:", cyrillicPattern.test("Привіт"));
+  console.log("Hello:", cyrillicPattern.test("Hello"));
 
-// get authorization token
-async function getToken(url, key) {
-    const apiTokenUrl = url + '/api/v1.1/authenticate';
-    const response = await fetch(apiTokenUrl, {
-        method: 'POST',
-        headers: {
-            'Authorization': 'Basic ' + key
-        }});
-    const authToken =  await response.text();
-    return authToken;
-}
+  // ping our api server, adding the input text to the url
+  fetch("http://localhost:3000/api/" + textToTranslate)
+    .then((response) => {
+      // convert to json
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
 
-// get translation
-async function getRussianTranslation(url, token, text) {
-    let translateURL = url + '/api/v1/Translation?text='+ text + '&srcLang=1033&dstLang=1049';
-    const response = await fetch(translateURL, {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Bearer ' + token
-        }});
-    let jsonValue = await response.json();
-    console.log(jsonValue);
-    return jsonValue;
-}
-
-async function main() {
-    let authToken = await getToken(serviceUrl, apiKey);
-    await getRussianTranslation(serviceUrl, authToken, 'go');
-}
-
-main();
-
+      if (
+        data !=
+        `No translations found for text \\"${textToTranslate}\\" among available dictionaries`
+      ) {
+        // display on page
+        $(".randomUser").html(`
+                ${data.Translation.Heading} ${data.Translation.Translation}`);
+        console.log(data.Translation.Translation);
+      } else {
+        $(".randomUser").html(`null`);
+      }
+    });
+});
