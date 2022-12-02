@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "work-in-progress-final",
+    "name": "dig245-final-beta",
     "builds": [{
         "src": "./server.js",
         "use": "@vercel/node"
