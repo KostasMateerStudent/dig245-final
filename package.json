@@ -1,7 +1,7 @@
 {
     "dependencies": {
         "express": "latest",
-        "node-fetch@2": "latest",
+        "node-fetch": "2",
         "nodemon": "latest"
     }
 }
