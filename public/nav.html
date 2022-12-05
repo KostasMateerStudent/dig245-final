@@ -10,78 +10,83 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+
+    <link rel="stylesheet" href="styles.css">
   </head>
 
   <body>
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-xl bg-light static-top">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.html"
-            ><h2>Ultimate Guide to Russian Grammar</h2></a
-          >
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html"
-                  >About</a
+      <div class="row nav-bar">
+        <nav class="navbar navbar-dark navbar-expand-xl nav-bar static-top">
+          <div class="container-fluid">
+            <a class="navbar-brand white"href="index.html"
+              ><h2>Ultimate Guide to Russian Grammar</h2></a
+            >
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link white" aria-current="page" href="index.html"
+                    >About</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="cases.html"
+                    >Cases</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="nav-link"
+                    aria-current="page"
+                    href="pronouns.html"
+                    >Pronouns</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="nav-link"
+                    aria-current="page"
+                    href="adjectives.html"
+                    >Adjectives</a
+                  >
+                </li>
+                <li>
+                  <a class="nav-link" aria-current="page" href="verbs.html"
+                    >Verbs</a
+                  >
+                </li>
+              </ul>
+              <form action="translation.html" method="get" id="translateForm" class="d-flex" role="search">
+                <input
+                  class="form-control me-2"
+                  type="text"
+                  placeholder="Text to translate"
+                  id="textToTranslate"
+                />
+                <button
+                  id="translateBtn"
+                  class="btn btn-outline-danger"
+                  type="submit"
                 >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="cases.html"
-                  >Cases</a
-                >
-              </li>
-              <li>
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="pronouns.html"
-                  >Pronouns</a
-                >
-              </li>
-              <li>
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="adjectives.html"
-                  >Adjectives</a
-                >
-              </li>
-              <li>
-                <a class="nav-link active" aria-current="page" href="verbs.html"
-                  >Verbs</a
-                >
-              </li>
-            </ul>
-            <form action="translation.html" method="get" id="translateForm" class="d-flex" role="search">
-              <input
-                class="form-control me-2"
-                type="text"
-                placeholder="Text to translate"
-                id="textToTranslate"
-              />
-              <button
-                id="translateBtn"
-                class="btn btn-outline-success"
-                type="submit"
-              >
-                Translate
-              </button>
-            </form>
+                  Translate
+                </button>
+              </form>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
+     
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="main.js"></script>

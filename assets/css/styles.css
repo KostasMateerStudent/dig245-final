@@ -5,5 +5,34 @@
 
 .nav-link:hover{
   border-radius: 5px;
-  background-color: grey;
+  background-color: #ff001e94;
+}
+
+.red {
+  color: #B22234;
+}
+
+.white {
+  color: white;
+}
+
+body {
+  background-color: #8E9AAF;
+}
+
+.nav-bar {
+  background-color: #3C3B6E;
+  color: white;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.red-background {
+  background-color: #B22234;
+}
+
+.active {
+  background-color: #ff001e94 !important;
 }

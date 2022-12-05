@@ -82,6 +82,7 @@ const { response } = require("express");
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'assets/js')));
 app.use(express.static(path.join(__dirname, 'assets/css')));
+app.use(express.static(path.join(__dirname, 'assets/img')));
 
 // starts the server
 app.listen(port, async () => {
