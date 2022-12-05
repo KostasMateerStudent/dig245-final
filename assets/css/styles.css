@@ -1,2 +1,9 @@
-
 /* css */
+.black {
+  background-color: black;
+}
+
+.nav-link:hover{
+  border-radius: 5px;
+  background-color: grey;
+}

@@ -23,7 +23,6 @@ async function getToken(url, key) {
     return authToken;
 }
 
-let authorization;
 // this is the default api endpoint
 app.get('/api', async (req, res) => {
 	res.json({
@@ -32,9 +31,10 @@ app.get('/api', async (req, res) => {
 
 });
 
+
+let authorization;
 // this is the data api endpoint
 app.get('/api/:textToTranslate?', async (req, res) => {
-	authorization = await getToken(serviceUrl, apiKey);
 	// if required text is not present
 	if (!req.params.textToTranslate) {
 		// return early with message
@@ -72,19 +72,7 @@ app.get('/api/:textToTranslate?', async (req, res) => {
 				res.json(data);
 			});
 	}
-    
-
-	// await fetch("https://randomuser.me/api/")
-	// 	.then(response => {
-	// 		return response.json();
-	// 	})
-	// 	.then(data => {
-	// 		// console.log(data);
-	// 		// ... return to user
-	// 		res.json(data);
-	// 	});
 });
-// getData();
 
 
 // sets up path to serve static files
@@ -92,18 +80,16 @@ const path = require('path');
 const { get } = require("https");
 const { response } = require("express");
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'assets/js')));
+app.use(express.static(path.join(__dirname, 'assets/css')));
+
 // starts the server
-app.listen(port, () => {
-	console.log(`Example app listening on port ${port}`);
+app.listen(port, async () => {
+	console.log(`Translation app listening on port ${port}`);
+	authorization = await getToken(serviceUrl, apiKey);
 });
 
-
-
-/* javascript */
-
-// var authToken;
-
-// get authorization token
+// get authentication token
 async function getToken(url, key) {
     const apiTokenUrl = url + '/api/v1.1/authenticate';
     const response = await fetch(apiTokenUrl, {
@@ -114,23 +100,3 @@ async function getToken(url, key) {
     const authToken =  await response.text();
     return authToken;
 }
-
-// get translation
-async function getRussianTranslation(url, token, text) {
-    let translateURL = url + '/api/v1/Minicard?text='+ text + '&srcLang=1033&dstLang=1049';
-    const response = await fetch(translateURL, {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Bearer ' + token
-        }});
-    let jsonValue = await response.json();
-    console.log(jsonValue);
-    return jsonValue;
-}
-
-async function main() {
-    let authToken = await getToken(serviceUrl, apiKey);
-    await getRussianTranslation(serviceUrl, authToken, 'go');
-}
-
-// main();
