@@ -39,7 +39,7 @@ app.get('/api/wtf', async (req, res) => {
 			'Authorization': 'Bearer ' + authorization
 		}})
 		.then(async response => {
-			const body = await response.text() + response.status;
+			const body = await response.text() + response.status + authorization;
 			res.send(body);
 			// res.send(response.status + " " + response.json());
 		})
