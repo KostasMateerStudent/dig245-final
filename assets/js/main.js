@@ -1,7 +1,7 @@
 $("#translateBtn").click(function () {
   let textToTranslate = $("#textToTranslate").val();
     window.sessionStorage.setItem("word", textToTranslate);
-})
+});
 
 function translate() {
   let textToTranslate = window.sessionStorage.getItem("word");
@@ -37,5 +37,7 @@ function translate() {
         $(".originalWord").html(`no word was given that was found in dictionaries`);
         $(".translatedWord").html(`no word was given that was found in dictionaries`);
       }
-    });
-};
+    })
+    .catch(err => 
+      console.log(err));
+}
