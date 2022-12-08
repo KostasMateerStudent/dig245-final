@@ -17,7 +17,7 @@ function translate() {
   // fetch("http://localhost:3000/api/" + textToTranslate)
     .then((response) => {
       // convert to json
-      return response.json();
+      return response.text();
     })
     .then((data) => {
       console.log(data);
