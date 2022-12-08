@@ -33,13 +33,15 @@ app.get('/api', async (req, res) => {
 
 //debug api endpoint
 app.get('/api/wtf', async (req, res) => {
-	await fetch(serviceUrl+'/api/v1/Minicard?text=hello&srcLang=1049&dstLang=1033', {
+	await fetch(serviceUrl+'/api/v1/Minicard?text=hello&srcLang=1033&dstLang=1049', {
 		method: 'GET',
 		headers: {
 			'Authorization': 'Bearer ' + authorization
 		}})
-		.then(response => {
-			res.send(response.status + " " + response.text());
+		.then(async response => {
+			const body = await response.text();
+			res.send(body);
+			// res.send(response.status + " " + response.json());
 		})
 		.catch(err => {
 			console.log("WTF TEST", err);
