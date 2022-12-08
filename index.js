@@ -31,6 +31,22 @@ app.get('/api', async (req, res) => {
 
 });
 
+//debug api endpoint
+app.get('/api/wtf', async (req, res) => {
+	await fetch(serviceUrl+'/api/v1/Minicard?text=hello&srcLang=1049&dstLang=1033', {
+		method: 'GET',
+		headers: {
+			'Authorization': 'Bearer ' + authorization
+		}})
+		.then(response => {
+			res.send(response.status + " " + response.text());
+		})
+		.catch(err => {
+			console.log("WTF TEST", err);
+			res.json({"error": "WTF TEST: "+ err});
+		});
+});
+
 
 let authorization;
 // this is the data api endpoint
