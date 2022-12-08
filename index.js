@@ -46,32 +46,28 @@ app.get('/api/:textToTranslate?', async (req, res) => {
 	}
 	// ... otherwise ....
 	console.log(req.params.textToTranslate);
+	// default
+	let translationUrl = serviceUrl+'/api/v1/Minicard?text='+ req.params.textToTranslate + '&srcLang=1049&dstLang=1033';
+	
 	if (!cyrillicPattern.test(req.params.textToTranslate)){
-		await fetch(serviceUrl+'/api/v1/Minicard?text='+ req.params.textToTranslate + '&srcLang=1033&dstLang=1049', {
-			method: 'GET',
-			headers: {
-				'Authorization': 'Bearer ' + authorization
-			}})
-			.then(response => {
-				return response.json();
-			})
-			.then(data => {
-				res.json(data);
-			});
+		translationUrl = serviceUrl+'/api/v1/Minicard?text='+ req.params.textToTranslate + '&srcLang=1033&dstLang=1049';
 	}
-	else {
-		await fetch(serviceUrl+'/api/v1/Minicard?text='+ req.params.textToTranslate + '&srcLang=1049&dstLang=1033', {
-			method: 'GET',
-			headers: {
-				'Authorization': 'Bearer ' + authorization
-			}})
-			.then(response => {
-				return response.json();
-			})
-			.then(data => {
-				res.json(data);
-			});
-	}
+
+	await fetch(translationUrl, {
+		method: 'GET',
+		headers: {
+			'Authorization': 'Bearer ' + authorization
+		}})
+		.then(response => {
+			return response.json();
+		})
+		.then(data => {
+			res.json(data);
+		})
+		.catch(err => {
+			console.log("ERROR TRANSLATING", err);
+			res.json({"error": "ERROR TRANSLATING: "+ err});
+		});
 });
 
 
