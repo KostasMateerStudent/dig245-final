@@ -12,17 +12,6 @@ const cyrillicPattern = /^[\u0400-\u04FF]+$/;
 
 const apiKey = 'MDcyZDlmYTktYjBkOS00ODlmLWI1NGQtZWIwMmM2Y2ZmOTAxOjE5MGIyMTg1NTMwMzRiZmI5Njg5NTQ3MzBiMTZmMmFj';
 
-async function getToken(url, key) {
-    const apiTokenUrl = url + '/api/v1.1/authenticate';
-    const response = await fetch(apiTokenUrl, {
-        method: 'POST',
-        headers: {
-            'Authorization': 'Basic ' + key
-        }});
-    const authToken =  await response.text();
-    return authToken;
-}
-
 // this is the default api endpoint
 app.get('/api', async (req, res) => {
 	res.json({
@@ -33,6 +22,7 @@ app.get('/api', async (req, res) => {
 
 //debug api endpoint
 app.get('/api/wtf', async (req, res) => {
+	authorization = await getToken(serviceUrl, apiKey);
 	await fetch(serviceUrl+'/api/v1/Minicard?text=hello&srcLang=1033&dstLang=1049', {
 		method: 'GET',
 		headers: {
@@ -76,14 +66,6 @@ app.get('/api/:textToTranslate?', async (req, res) => {
 		headers: {
 			'Authorization': 'Bearer ' + authorization
 		}})
-		// .then(safeParseJSON(response))
-		// .then(data => {
-		// 	res.json(data);
-		// })
-		// .catch(err => {
-		// 	console.log("ERROR TRANSLATING", err);
-		// 	res.json({"error": "ERROR TRANSLATING: " + err});
-		// });
 		.then(async response => {
 			const body = await response.text();
 			return JSON.parse(body);
@@ -123,16 +105,4 @@ async function getToken(url, key) {
         }});
     const authToken =  await response.text();
     return authToken;
-}
-
-async function safeParseJSON(response) {
-	const body = await response.text();
-	try {
-			return JSON.parse(body);
-	} catch (err) {
-			console.error("Error:", err);
-			console.error("Response body:", body);
-			// throw err;
-			// return ReE(response, err.message, 500)
-	}
 }
