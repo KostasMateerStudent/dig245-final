@@ -40,10 +40,9 @@ app.get('/api/wtf', async (req, res) => {
 });
 
 
-let authorization;
 // this is the data api endpoint
 app.get('/api/:textToTranslate?', async (req, res) => {
-	authorization = await getToken(serviceUrl, apiKey);
+	const authorization = await getToken(serviceUrl, apiKey);
 	// if required text is not present
 	if (!req.params.textToTranslate) {
 		// return early with message
