@@ -58,8 +58,17 @@ app.get('/api/:textToTranslate?', async (req, res) => {
 		headers: {
 			'Authorization': 'Bearer ' + authorization
 		}})
-		.then(response => {
-			return response.json();
+		// .then(safeParseJSON(response))
+		// .then(data => {
+		// 	res.json(data);
+		// })
+		// .catch(err => {
+		// 	console.log("ERROR TRANSLATING", err);
+		// 	res.json({"error": "ERROR TRANSLATING: " + err});
+		// });
+		.then(async response => {
+			const body = await response.text();
+			return JSON.parse(body);
 		})
 		.then(data => {
 			res.json(data);
@@ -96,4 +105,16 @@ async function getToken(url, key) {
         }});
     const authToken =  await response.text();
     return authToken;
+}
+
+async function safeParseJSON(response) {
+	const body = await response.text();
+	try {
+			return JSON.parse(body);
+	} catch (err) {
+			console.error("Error:", err);
+			console.error("Response body:", body);
+			// throw err;
+			// return ReE(response, err.message, 500)
+	}
 }
