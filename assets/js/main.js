@@ -1,11 +1,13 @@
+// saves the word data in the storage
 $("#translateBtn").click(function () {
   let textToTranslate = $("#textToTranslate").val();
-    window.sessionStorage.setItem("word", textToTranslate);
+  window.sessionStorage.setItem("word", textToTranslate);
 });
 
+// grabs word from storage, grabs the translation
 function translate() {
   let textToTranslate = window.sessionStorage.getItem("word");
-  if (window.sessionStorage.getItem("word") == ""){
+  if (window.sessionStorage.getItem("word") == "") {
     $(".originalWord").html(`no word was given`);
     $(".translatedWord").html(`no word was given`);
     return;
@@ -33,10 +35,13 @@ function translate() {
 
         console.log(data.Translation.Translation);
       } else {
-        $(".originalWord").html(`no word was given that was found in dictionaries`);
-        $(".translatedWord").html(`no word was given that was found in dictionaries`);
+        $(".originalWord").html(
+          `no word was given that was found in dictionaries`
+        );
+        $(".translatedWord").html(
+          `no word was given that was found in dictionaries`
+        );
       }
     })
-    .catch(err => 
-      console.log(err));
+    .catch((err) => console.log(err));
 }
