@@ -3,13 +3,18 @@
   background-color: black;
 }
 
-.nav-link:hover{
+.red-background .nav-link:hover{
   border-radius: 5px;
   background-color: #ff001e94;
 }
 
 .hide-hover:hover{
   background-color: #B22234;
+}
+
+.nav-bar .nav-link:hover {
+  border-radius: 5px;
+  background-color: #515096a3;
 }
 
 .red {
