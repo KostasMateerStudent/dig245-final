@@ -8,6 +8,10 @@
   background-color: #ff001e94;
 }
 
+.hide-hover:hover{
+  background-color: #B22234;
+}
+
 .red {
   color: #B22234;
 }
