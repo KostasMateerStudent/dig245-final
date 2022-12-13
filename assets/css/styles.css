@@ -40,3 +40,7 @@ body {
 p, h1, h2{
   color: white;
 }
+
+.red-background a {
+  padding-left: 0px;
+}
