@@ -12,7 +12,7 @@ const apiKey =
   "MDcyZDlmYTktYjBkOS00ODlmLWI1NGQtZWIwMmM2Y2ZmOTAxOjE5MGIyMTg1NTMwMzRiZmI5Njg5NTQ3MzBiMTZmMmFj";
 
 // global token for authentication
-var token = "";
+// var token = "";
 
 // this is the default api endpoint
 app.get("/api", async (req, res) => {
@@ -55,7 +55,7 @@ async function getToken(url, key) {
 
 // get data/check if token is valid
 async function fetchData(req, res) {
-  if (token === "") token = await getToken(serviceUrl, apiKey);
+  // if (token === "") token = await getToken(serviceUrl, apiKey);
 
   // if required text is not present
   if (!req.params.textToTranslate) {
@@ -99,7 +99,6 @@ async function fetchData(req, res) {
           method: "GET",
           headers: { Authorization: "Bearer " + token },
         });
-        res.text("here");
       }
       const body = await response.text();
       return JSON.parse(body);
