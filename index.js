@@ -56,7 +56,6 @@ async function getToken(url, key) {
 // get data/check if token is valid
 async function fetchData(req, res) {
   if (token === "") token = await getToken(serviceUrl, apiKey);
-  res.json(token);
 
   // if required text is not present
   if (!req.params.textToTranslate) {
@@ -100,6 +99,7 @@ async function fetchData(req, res) {
           method: "GET",
           headers: { Authorization: "Bearer " + token },
         });
+        res.text("here");
       }
       const body = await response.text();
       return JSON.parse(body);
