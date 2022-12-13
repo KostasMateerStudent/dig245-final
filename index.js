@@ -12,7 +12,7 @@ const apiKey =
   "MDcyZDlmYTktYjBkOS00ODlmLWI1NGQtZWIwMmM2Y2ZmOTAxOjE5MGIyMTg1NTMwMzRiZmI5Njg5NTQ3MzBiMTZmMmFj";
 
 // global token for authentication
-// var token = "";
+var token = "";
 
 // this is the default api endpoint
 app.get("/api", async (req, res) => {
