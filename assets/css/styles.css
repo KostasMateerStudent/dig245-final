@@ -70,3 +70,7 @@ p, h1, h2{
 .table-responsive::-webkit-scrollbar{
   display: none;
 }
+
+.max-height {
+  height: 100%;
+}
