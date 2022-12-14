@@ -66,3 +66,7 @@ p, h1, h2{
 /* [5] */
 .scroll::-webkit-scrollbar {
   display: none; }
+
+.table-responsive::-webkit-scrollbar{
+  display: none;
+}
